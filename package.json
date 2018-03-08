@@ -1,0 +1,35 @@
+{
+  "name": "fortnite-weapons",
+  "version": "1.0.0",
+  "description": "A discord bot written in TypeScript that returns Fortnite Weapon stats.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run index.js",
+    "build:live": "nodemon --exec tsc -- ./src/*.ts",
+    "build": "tsc ./src/*.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Tommy Barnes",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^7.0.13",
+    "concurrently": "^3.4.0",
+    "nodemon": "^1.11.0",
+    "ts-node": "^3.0.2",
+    "typescript": "^2.3.1"
+  },
+  "dependencies": {
+    "@types/cheerio": "^0.22.7",
+    "@types/lodash": "^4.14.64",
+    "cheerio": "^0.22.0",
+    "crawler": "^1.1.2",
+    "discord.js": "^11.3.2",
+    "fs": "0.0.1-security",
+    "lodash": "^4.17.4",
+    "q": "^1.5.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0",
+    "url-parse": "^1.1.8"
+  }
+}

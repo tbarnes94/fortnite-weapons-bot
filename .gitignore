@@ -1,0 +1,6 @@
+*node_modules/*
+src/config.json
+database/weapons/all/*
+database/weapons/one/*
+package-lock.json
+*.js
