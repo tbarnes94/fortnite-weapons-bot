@@ -2,7 +2,7 @@ const crawler: any = require('crawler');
 import * as fs from 'fs';
 import { IWeaponAll } from '../../models/iweapon.all';
 import { IWeaponOne } from '../../models/iweaponone.one';
-const weapons: IWeaponAll[] = require('../../../database/weapons/all/statistics_2018-3-8.json');
+const weapons: IWeaponAll[] = require('../../../database/weapons/all/statistics_2018-3-9.json');
 // let imgSet: Set<string> = new Set<string>();
 // weapons.forEach((e) => { imgSet.add(e.image); });
 
@@ -188,17 +188,20 @@ let weaponCtr = 0;
 
 let c: any = new crawler({
     // rateLimit: 5,
-    maxConnections: 10,
+    maxConnections: 1,
     // this will be called for each crawled page.
     // jQuery: true,
     callback: (err: any, res: any, done: any) => {
         if (err) {
+            // console.log('THERE WAS AN ERROR!!!');
             console.log(err);
         } else {
+            // console.log(JSON.stringify(weapons[weaponCtr], null, 2));
             weaponData.image = weapons[weaponCtr].image;
             weaponData.name.text = weapons[weaponCtr].name.text;
             weaponData.name.url = weapons[weaponCtr].name.url;
             weaponData.name.rarity = weapons[weaponCtr].rarity;
+            // console.log(weaponCtr, weaponData.name.text, weaponData.name.rarity);
             console.log(`QUEUEING UP ${weaponData.name.url}. . . `);
             let $: any = res.$;
             // $ is Cheerio by default
@@ -311,11 +314,11 @@ let c: any = new crawler({
                     }
             });
             // console.log(weaponData);
+            // console.log(JSON.stringify(weaponData, null, 2));
             let weaponUrlArr = weaponData.name.url.split('/');
             let weaponFN = weaponUrlArr[weaponUrlArr.length - 1];
             // console.log(weaponFN);
             let d = new Date().toLocaleDateString();
-            weaponCtr++;
             console.log(`* WRITING * TO * /weapons/one/${weaponFN}_${d}.json *`);
             fs.writeFileSync(
                 `${__dirname}/../../../database/weapons/one/${weaponFN}_${d}.json`,
@@ -323,12 +326,13 @@ let c: any = new crawler({
             );
             console.log('---> WRITING COMPLETE!!\n');
             resetData();
+            weaponCtr++;
         }
         done();
     }
 });
 
-let weaponsUrlArr: string[] = [];
+let weaponsUrlArr: string[] = new Array<string>();
 
 weapons.forEach((e) => {
     weaponsUrlArr.push(e.name.url);
