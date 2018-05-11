@@ -2,7 +2,8 @@ const crawler: any = require('crawler');
 import * as fs from 'fs';
 import { IWeaponAll } from '../../models/iweapon.all';
 import { IWeaponOne } from '../../models/iweaponone.one';
-const weapons: IWeaponAll[] = require('../../../database/weapons/all/statistics_2018-3-9.json');
+const d = new Date().toLocaleDateString();
+const weapons: IWeaponAll[] = require(`../../../database/weapons/all/statistics_${d}.json`);
 // let imgSet: Set<string> = new Set<string>();
 // weapons.forEach((e) => { imgSet.add(e.image); });
 
