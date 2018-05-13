@@ -1,4 +1,5 @@
 const crawler: any = require('crawler');
+const path = require('path');
 import * as fs from 'fs';
 import { IWeaponAll } from '../../models/iweapon.all';
 import { IWeaponOne } from '../../models/iweaponone.one';
@@ -320,9 +321,10 @@ let c: any = new crawler({
             let weaponFN = weaponUrlArr[weaponUrlArr.length - 1];
             // console.log(weaponFN);
             let d = new Date().toLocaleDateString();
+            let fileName = path.join(__dirname, `/../../../database/weapons/one/${weaponFN}_${d}.json`);
             console.log(`* WRITING * TO * /weapons/one/${weaponFN}_${d}.json *`);
             fs.writeFileSync(
-                `${__dirname}/../../../database/weapons/one/${weaponFN}_${d}.json`,
+                fileName,
                 JSON.stringify(weaponData, null, 2)
             );
             console.log('---> WRITING COMPLETE!!\n');

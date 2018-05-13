@@ -1,4 +1,5 @@
 const crawler = require('crawler');
+const path = require('path');
 import * as fs from 'fs';
 
 let headers: any = [];
@@ -116,8 +117,10 @@ let c: any = new crawler({
             // console.log(JSON.stringify(weaponData, null, 2));
             console.log('* WRITING * TO * LOCAL * DB *');
             let d = new Date().toLocaleDateString();
+            let fileName = path.join(__dirname, `../../../database/weapons/all/statistics_${d}.json`);
+            // console.log(fileName);
             fs.writeFile(
-                `${__dirname}/../../../database/weapons/all/statistics_${d}.json`,
+                fileName,
                 JSON.stringify(weaponData, null, 2),
                 (error: any) => {
                     if (err) {
