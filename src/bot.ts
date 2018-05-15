@@ -139,7 +139,7 @@ client.on('message', (msg: any) => {
 				msg.channel.send({ embed });
 				break;
 			} catch (err) {
-				msg.channel.send(`**Incorrect Syntax**: try ***!weapons help*** for the full description.`);
+				msg.channel.send(`**Incorrect Syntax**: try ***!weapon help*** for the full description.`);
 				break;
 			}
 	}

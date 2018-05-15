@@ -299,7 +299,12 @@ let c: any = new crawler({
                             // console.log('--LOOT PROBABILITY--');
                         }
                         // console.log(cellData);
-                        weaponData[cellTypes[ctr][0]][cellTypes[ctr][1]][cellTypes[ctr][2]] = cellData;
+                        if (weaponData.name.text === "Tactical Submachine Gun") {
+                            weaponData[cellTypes[ctr][0]][cellTypes[ctr][1]][cellTypes[ctr][2]] = "";
+                        }
+                        else {
+                            weaponData[cellTypes[ctr][0]][cellTypes[ctr][1]][cellTypes[ctr][2]] = cellData;
+                        }
                         ctr++;
                     } else
                     // LOOT PROBABILITY { SUPPLY DROP }
@@ -310,7 +315,12 @@ let c: any = new crawler({
                         }
                         // console.log(cellData);
                         if (supplyDropBool) {
-                            weaponData[cellTypes[ctr][0]][cellTypes[ctr][1]][cellTypes[ctr][2]] = cellData;
+                            if (weaponData.name.text === "Tactical Submachine Gun") {
+                                weaponData[cellTypes[ctr][0]][cellTypes[ctr][1]][cellTypes[ctr][2]] = "";
+                            }
+                            else {
+                                weaponData[cellTypes[ctr][0]][cellTypes[ctr][1]][cellTypes[ctr][2]] = cellData;
+                            }
                             ctr++;
                         }
                     }
