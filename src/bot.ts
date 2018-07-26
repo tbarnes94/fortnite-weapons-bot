@@ -105,10 +105,10 @@ client.on('message', (msg: any) => {
 			// .addField('Inline Field 3', 'You can have a maximum of 25 fields.', true);
 			msg.channel.send({ embed1 });
 			break;
-		case '!weapon':
+		case '!armory':
 			try {
 				if (args[1] === 'help') {
-					msg.channel.send('Type ***!weapon <weapon> <rarity> <statType>*** to display data for a specific weapon.\n\n\
+					msg.channel.send('Type ***!armory <weapon> <rarity> <statType>*** to display data for a specific weapon.\n\n\
 					**weapon:** assault-rifle-m4, assault-rifle-scar, assault-rifle-burst, etc.\n\n\
 					**rarity**: common, uncommon, rare, epic, legendary\n\n\
 					**statType**: quick, spread, firingRate, range, damage, envDamage, impactDamage, recoil, lootProbability.');
@@ -139,7 +139,7 @@ client.on('message', (msg: any) => {
 				msg.channel.send({ embed });
 				break;
 			} catch (err) {
-				msg.channel.send(`**Incorrect Syntax**: try ***!weapon help*** for the full description.`);
+				msg.channel.send(`**Incorrect Syntax**: try ***!armory help*** for the full description.`);
 				break;
 			}
 	}
