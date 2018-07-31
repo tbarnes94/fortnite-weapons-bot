@@ -8,7 +8,7 @@ let weaponData: any = [];
 let dbUrl = 'https://db.fortnitetracker.com';
 
 let cellTypes = {
-    WEAPON: 0,
+    IMAGE: 0,
     NAME: 1,
     RARITY: 2,
     DPS: 3,
@@ -55,9 +55,11 @@ let c: any = new crawler({
             $('th').each((i: number, elem: any) => {
                 // if (i > 0) {
                 let headerName = elem.children[0].data;
-                headers.push(sanitizeHeaderName(headerName));
                 if (headerName === 'Weapon') {
+                    headers.push('image');
                     headers.push('name');
+                } else {
+                    headers.push(sanitizeHeaderName(headerName));
                 }
                 // console.log(headerName);
                 // } else {
@@ -102,7 +104,7 @@ let c: any = new crawler({
                 }
                 // console.log(cellData);
                 switch (columnIndex) {
-                    case cellTypes.WEAPON:
+                    case cellTypes.IMAGE:
                         // console.log(columnIndex, headers[columnIndex])
                         weapon[headers[columnIndex]] = cellData;
                         break;
