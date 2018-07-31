@@ -8,7 +8,7 @@ let weaponData: any = [];
 let dbUrl = 'https://db.fortnitetracker.com';
 
 let cellTypes = {
-    IMAGE: 0,
+    WEAPON: 0,
     NAME: 1,
     RARITY: 2,
     DPS: 3,
@@ -53,16 +53,21 @@ let c: any = new crawler({
             // server
 
             $('th').each((i: number, elem: any) => {
-                if (i > 0) {
-                    let headerName = elem.children[0].data;
-                    headers.push(sanitizeHeaderName(headerName));
-                    // console.log(headerName);
-                } else {
-                    let headerName = 'image';
-                    headers.push(headerName);
-                    // console.log(headerName);
+                // if (i > 0) {
+                let headerName = elem.children[0].data;
+                headers.push(sanitizeHeaderName(headerName));
+                if (headerName === 'Weapon') {
+                    headers.push('name');
                 }
+                // console.log(headerName);
+                // } else {
+                //     console.log(elem.children[0].data);
+                //     let headerName = 'image';
+                //     headers.push(headerName);
+                //     console.log(headerName);
+                // }
             });
+            // console.log(headers);
             let weapon: any = {};
             $('td').each((i: number, elem: any) => {
                 const cell: any = elem.children[0];
@@ -97,18 +102,23 @@ let c: any = new crawler({
                 }
                 // console.log(cellData);
                 switch (columnIndex) {
-                    case cellTypes.IMAGE:
+                    case cellTypes.WEAPON:
+                        // console.log(columnIndex, headers[columnIndex])
                         weapon[headers[columnIndex]] = cellData;
                         break;
                     case cellTypes.NAME:
+                        // console.log("In Name");
+                        // console.log(columnIndex, headers[columnIndex])
                         weapon[headers[columnIndex]] = cellData;
                         break;
                     case cellTypes.RELOAD_TIME:
+                        // console.log(columnIndex, headers[columnIndex])
                         weapon[headers[columnIndex]] = cellData;
                         weaponData.push(weapon);
                         weapon = {};
                         break;
                     default:
+                        // console.log(columnIndex, headers[columnIndex])
                         weapon[headers[columnIndex]] = cellData;
                 }
                 // console.log(headers);
