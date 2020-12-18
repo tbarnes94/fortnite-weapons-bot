@@ -1,4 +1,4 @@
-# Fortnite Armory
+# Fortnite Armory (Deprecated)
 A bot that returns fortnite weapon statistics based on input from Discord users.  Written in TypeScript.
 
 * bot.ts is the bot itself.  taken some code from https://github.com/MyMICDS/MyMICDS-Discord-Bot.
